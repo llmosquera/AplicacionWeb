@@ -1,0 +1,39 @@
+{% with messages = get_flashed_messages() %}
+{%  if messages %}
+{% for message in messages %}
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+<form action="/insertar" method="POST">
+    <input type="text" name='Tarea' placeholder='Tarea'>
+    <input type="text" name='Email' placeholder='Email'>
+    <input type="text" name='Prioridad' placeholder='Prioridad'>
+    <button type='submit'>
+        Guardar
+    </button>
+    
+    <table>
+        <thead>
+            <tr>
+                <td>Tarea</td>
+                <td>Email</td>
+                <td>Prioridad</td>
+                <td>Operaciones</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for inserta in insertar%}
+        <tr>
+            <td>{{inserta.1}}</td>
+            <td>{{inserta.2}}</td>
+            <td>{{inserta.3}}</td>
+            <td>
+                <a href='/Editar/{{insertar.0}}'>Editar</a>
+                <a href='/Eliminar/{{insertar.0}}'>Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</form>
